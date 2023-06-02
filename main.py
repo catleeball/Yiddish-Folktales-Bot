@@ -1,8 +1,10 @@
 from annotations import ANNOTATIONS
 from cohost.models.user import User
 from cohost.models.block import MarkdownBlock
+from collections import deque
 from datetime import datetime
 from glossary import GLOSSARY
+from itertools import islice
 from pathlib import Path
 from secrets import COHOST_COOKIE
 
@@ -67,26 +69,34 @@ def get_tale(tale_num: int) -> str:
     return tale
 
 
+def update_post_glossary(words: list[str], gloss_entries: dict[str, str]):
+    word = ' '.join(words)
+    if word in GLOSSARY:
+        gloss_entries[word] = GLOSSARY[word]
+    elif word.lower() in GLOSSARY:
+        gloss_entries[word] = GLOSSARY[word.lower()]
+    return gloss_entries
+
+
 def get_glossary_entries(tale: str) -> dict[str, str]:
     """Get a dictionary of relevant glossary entries for this tale"""
     words = tale.split()
+    # many of the glossary words are in markdown italic; remove the asterisks for matching with the glossary dict
+    words = [word.replace('*', '') for word in words]
     gloss_entries = {}
 
     if not words:
         print(f'{datetime.now()}\t0\tERROR: No words parsed from tale: {tale}')
         exit(1)
-    for word in words:
-        # many of the glossary words are in markdown italic; remove the asterisks for matching with the glossary dict
-        if word.startswith('*'):
-            word = word[1:]
-        if word.endswith('*'):
-            word = word[:-1]
 
-        if word in GLOSSARY:
-            gloss_entries[word] = GLOSSARY[word]
-            continue
-        if word.lower() in GLOSSARY:
-            gloss_entries[word] = GLOSSARY[word.lower()]
+    # Check if each word is in the glossary
+    for word in words:
+        gloss_entries = update_post_glossary([word], gloss_entries)
+    # Glossary entries can also be two or three word phrases.
+    for word in sliding_window(words, 2):
+        gloss_entries = update_post_glossary(words, gloss_entries)
+    for word in sliding_window(words, 3):
+        gloss_entries = update_post_glossary(words, gloss_entries)
 
     return gloss_entries
 
@@ -128,6 +138,18 @@ def post_to_cohost(tale_num: int, post: str):
     )
     # Print TSV data for logging
     print(f'{datetime.now()}\t{tale_num}\t{new_post.url}')
+
+
+def sliding_window(iterable, n: int):
+    """From itertools recipes: https://docs.python.org/3/library/itertools.html#itertools-recipes"""
+    # sliding_window('ABCDEFG', 4) --> ABCD BCDE CDEF DEFG
+    it = iter(iterable)
+    window = deque(islice(it, n), maxlen=n)
+    if len(window) == n:
+        yield tuple(window)
+    for x in it:
+        window.append(x)
+        yield tuple(window)
 
 
 def increment_tale_num(tale_num: int):
