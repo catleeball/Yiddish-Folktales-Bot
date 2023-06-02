@@ -130,7 +130,7 @@ def make_post_body(tale: str, gloss: dict[str, str], annot: str) -> str:
 def post_to_cohost(tale_num: int, post: str):
     user = User.loginWithCookie(COHOST_COOKIE)
     project = user.getProject(COHOST_PAGE)
-    TAGS.append(f'Yiddish Folktale #{tale_num}')
+    TAGS.append(f'Yiddish Folktale number {tale_num}')
     new_post = project.post(
         headline=str(tale_num),
         blocks=[MarkdownBlock(post)],
