@@ -1,6 +1,4 @@
-# *******Bibliography***
-
-
+# ***Bibliography***
 
 
 Aarne, Antti and Stith Thompson. 1961. *The Types of the Folktale*, 2nd ed. Folklore Fellows Communications no. 184, Helsinki.

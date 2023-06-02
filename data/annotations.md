@@ -1,4 +1,4 @@
-# *******Annotations to the Tales***
+# ***Annotations to the Tales***
 
 \(Tales are listed by number, as in the table of contents.\)
 
