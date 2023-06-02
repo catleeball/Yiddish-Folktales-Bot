@@ -12,7 +12,7 @@ from secrets import COHOST_COOKIE
 CURRENT_TALE_FILE = 'CURRENT_TALE.txt'
 TALES_DIR = 'data/tales'
 MAX_TALE_NUM = 178
-TAGS = ['Yiddish Folktales', 'Jewish Folktales', 'bot account', 'automated post', 'cohost.py']
+TAGS = ['Yiddish Folktales', 'Jewish Folktales', 'bot account', 'automated post', 'cohost.py', 'The Cohost Bot feed']
 COHOST_PAGE = 'Yiddish-Folktales'
 
 
@@ -52,6 +52,7 @@ def get_current_tale_num() -> int:
 
 def get_tale_path(tale_num: int) -> str:
     return f'{TALES_DIR}/{tale_num}.md'
+
 
 def get_tale(tale_num: int) -> str:
     """Get the markdown-formatted tale text for the current tale from file"""
