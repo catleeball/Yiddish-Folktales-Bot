@@ -122,7 +122,7 @@ GLOSSARY = {
     "tisha": "b’Av (Yid. “tíshebov;” lit., “the ninth day of the month of “Av””) A day of fasting and mourning, observed in late summer, commemorating the destruction of the two Temples in Jerusalem.",
     "Torah": "(Yid. “toyre”) The Pentateuch, the Five Books of Moses; the scroll on which these first five books of the Bible are written. The term refers also to Jewish law in general and to the traditional study of sacred Jewish texts.",
     "torah": "(Yid. “toyre”) The Pentateuch, the Five Books of Moses; the scroll on which these first five books of the Bible are written. The term refers also to Jewish law in general and to the traditional study of sacred Jewish texts.",
-    "tsadek (tsadikim)": "An especially pious, righteous, or spiritually pure man. A Hasidic leader (rebbe) is also often referred to as a “tsadek”.",
+    "tsadek": "(tsadikim) An especially pious, righteous, or spiritually pure man. A Hasidic leader (rebbe) is also often referred to as a “tsadek”.",
     "tsholnt": "(cholent) A stew, usually containing meat and beans together with potatoes or barley, prepared on Fridays and, in view of the prohibition against cooking on the Sabbath, kept warm overnight to be served as the main meal on Saturday afternoons.",
     "Vilna Gaon": "(Yid. “Vilner goen;” lit., “Sage of Vilna”) Elijah ben Solomon Zalman (17 20–1797), rabbinic scholar and teacher, leader of the “misnagdim”, the orthodox opponents of the Hasidic movement.",
     "vilna gaon": "(Yid. “Vilner goen;” lit., “Sage of Vilna”) Elijah ben Solomon Zalman (17 20–1797), rabbinic scholar and teacher, leader of the “misnagdim”, the orthodox opponents of the Hasidic movement.",
