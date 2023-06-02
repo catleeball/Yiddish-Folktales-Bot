@@ -2,7 +2,10 @@
 
 A bot that automatically posts folktales from the book [*"Yiddish Folktales"*](https://mitpressbookstore.mit.edu/book/9780805210903). Tales were gathered in the 1920s and 1930s in Eastern Europe.
 
-Posts include both the 
+Posts include both the tales themselves, plus related glossary terms and annotations.
+
+Currently posts to Cohost at https://cohost.org/Yiddish-Folktales
+
 
 ## Contributing
 
