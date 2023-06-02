@@ -4,3 +4,4 @@ secrets.py
 Yiddish_Folktales.md
 *.log
 __pycache__/
+CURRENT_TALE.txt
