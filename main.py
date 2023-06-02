@@ -69,24 +69,17 @@ def get_tale(tale_num: int) -> str:
 
 def get_glossary_entries(tale: str) -> dict[str, str]:
     """Get a dictionary of relevant glossary entries for this tale"""
-    words = tale.split()
     gloss_entries = {}
 
-    if not words:
-        print(f'{datetime.now()}\t0\tERROR: No words parsed from tale: {tale}')
+    if not tale:
+        print(f'{datetime.now()}\t0\tERROR: Tale is empty string')
         exit(1)
-    for word in words:
-        # many of the glossary words are in markdown italic; remove the asterisks for matching with the glossary dict
-        if word.startswith('*'):
-            word = word[1:]
-        if word.endswith('*'):
-            word = word[:-1]
 
-        if word in GLOSSARY:
-            gloss_entries[word] = GLOSSARY[word]
-            continue
-        if word.lower() in GLOSSARY:
-            gloss_entries[word] = GLOSSARY[word.lower()]
+    # Check which glossary entries are present in the current tale.
+    # This is easier than matching words from the tale to glossary entries, since entries may contain multiple words.
+    for keyword in GLOSSARY.keys():
+        if keyword in tale:
+            gloss_entries[keyword] = GLOSSARY[keyword]
 
     return gloss_entries
 
@@ -107,11 +100,18 @@ def make_post_body(tale: str, gloss: dict[str, str], annot: str) -> str:
     gloss_text: str = '<br>'.join(gloss_lines)
 
     # Since everything in the <details> tag is HTML, let's replace the newlines in the annotations with <br>
-    annot.replace('\n', '<br>')
+    if annot:
+        annot.replace('\n', '<br>')
 
     # put the annotations & glossary in collapsible blocks
     glossary_block =   f'<details open><summary>Glossary</summary>{gloss_text}</details>'
     annotation_block = f'<details open><summary>Annotations</summary>{annot}</details>'
+
+    if not gloss_text or gloss_lines:
+        glossary_block = ''
+
+    if not annot:
+        annotation_block = ''
 
     body = f'{tale}\n\n\\* \\* \\*\n\n{glossary_block}\n\n\\* \\* \\*\n\n{annotation_block}\n\n'
     return body
